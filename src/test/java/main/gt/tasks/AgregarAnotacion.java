@@ -6,6 +6,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.MoveMouse;
 import net.thucydides.core.annotations.Managed;
@@ -33,8 +34,7 @@ public class AgregarAnotacion {
 
     @And("^Da clic sobre el botón Agregar Anotación$")
     public void daClicAgregarAnotacion() {
-        actor.attemptsTo(
-                MoveMouse.to("//a[contains(text(),'agregar anotacion')]").andThen(Actions::click));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^Se visualiza formulario agregar anotacion$")

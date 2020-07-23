@@ -10,8 +10,7 @@ Feature: Administrar Unidades Inmobiliarias
     Then El sistema muestra la informacion de las Unidades Inmobiliarias
 
   Scenario Outline: Realizar búsqueda de una Unidad Inmobiliaria
-    When Ingresa información en filtro de busqueda <busqueda>
-    And Da clic en buscar
+    When En unidades inmobiliarias Ingresa información en filtro de busqueda <busqueda> y da Enter
     Then El sistema muestra los resultados <resultado>
     Examples:
       | busqueda            | resultado             |
@@ -23,54 +22,13 @@ Feature: Administrar Unidades Inmobiliarias
       | jbarbosam@gmail.com | Bits                  |
       | NoExiste            | No existe informacion |
 
-  Scenario Outline: Comportamiento en cada uno de los filtros
-    Given El usuario Da clic sobre la opción Filtros
-    When Da clic en los <filtro> de Unidades Inmobiliarias
-    Then El sistema presenta el listado del <filtro> seleccionado
-    Examples:
-      | filtro    |
-      | Nombre    |
-      | Nit       |
-      | Catastro  |
-      | Direccion |
-
-  Scenario Outline: Autocomplete de cada filtro
-    Given El usuario Da clic sobre la opción Filtros
-    When Da clic en los <filtro> de Unidades Inmobiliarias
-    And En Unidad Inmobiliaria Se ingresa <informacion> en el <filtro>
-    Then En Unidad Inmobiliaria se muestra el <resultado>
-    Examples:
-      | filtro    | informacion | resultado            |
-      | Nombre    | jo          | jose barbosa         |
-      | Nit       | 34          | 345678               |
-      | Catastro  | 34          | 345678               |
-      | Direccion | calle 106   | calle 106 carrera 57 |
-
-  Scenario Outline: Seleccionar un elemento de la lista presentada en el filtro
-    Given El usuario Da clic sobre la opción Filtros
-    When Da clic en los <filtro> de Unidades Inmobiliarias
-    And En Unidad Inmobiliaria Se ingresa <informacion> en el <filtro>
-    And En Unidad Inmobiliaria se muestra el <resultado>
-    Then EL usuario seleccion el primer elemento
-    And Se muestran los resultados en la tabla
-    Examples:
-      | filtro    | informacion | resultado            |
-      | Nombre    | jo          | jose barbosa         |
-      | Nit       | 34          | 345678               |
-      | Catastro  | 34          | 345678               |
-      | Direccion | calle 106   | calle 106 carrera 57 |
-
-
-
-  Scenario Outline: Seleccionar icono de acciones
-    When Selecciona una <opcion>
-    Then El sistema realiza una accion <accion>
+   Scenario Outline: Seleccionar icono de acciones
+    When En unidades inmobiliarias Selecciona una <opcion>
+    Then En unidades inmobiliarias El sistema realiza una accion <accion>
     Examples:
       | opcion    | accion           |
       | consultar | Pagina consultar |
       | modificar | Pagina modificar |
-      | activar   | presenta mensaje |
-
 
   Scenario: Seleccionar Botón Crear Unidad Inmobiliaria
     When Da clic en Crear Unidad Inmobiliaria

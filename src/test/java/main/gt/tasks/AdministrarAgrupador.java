@@ -1,8 +1,6 @@
 package main.gt.tasks;
 
 import core.Helpers.GeneralParams;
-import core.actions.ClickButtonAction;
-import core.actions.EnterTextAction;
 import core.questions.QuestionValidate;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
@@ -11,15 +9,15 @@ import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
-import net.serenitybdd.screenplay.actions.Enter;
-import net.serenitybdd.screenplay.actions.MoveMouse;
+import net.serenitybdd.screenplay.targets.Target;
 import net.thucydides.core.annotations.Managed;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.*;
 import static net.serenitybdd.screenplay.questions.WebElementQuestion.the;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+
 public class AdministrarAgrupador {
     Actor actor;
 
@@ -31,6 +29,9 @@ public class AdministrarAgrupador {
         actor = Actor.named("usuario");
         actor.can(BrowseTheWeb.with(navegador));
     }
+
+    Target MODIFICAR_AGRUPADOR = Target.the("MODIFICAR AGRUPADOR").located(By.cssSelector(""));
+
 
 
     @And("^da clic en el agrupador deseado$")
@@ -60,7 +61,20 @@ public class AdministrarAgrupador {
 
     @Then("^En Administrar agrupador El sistema muestra los resultados según la (.*)$")
     public void enAdministrarAgrupadorElSistemaMuestraLosResultadosSegunLaBusqueda(String busqueda) {
-        actor.attemptsTo(Enter.theValue(busqueda).into(""));
+        switch (busqueda){
+            case "H1":
+                actor.should(new QuestionValidate("Agrupador H1").Execute(new GeneralParams(
+                        "Registro",
+                        "//p[contains(text(),'')] "
+                )));
+                break;
+            case "P5":
+                actor.should(new QuestionValidate("Torre P5").Execute(new GeneralParams(
+                        "Registro",
+                        "//p[contains(text(),'')] "
+                )));
+                break;
+        }
     }
 
     @When("^En Administrar Agrupador Selecciona una (.*)$")

@@ -1,8 +1,6 @@
 package main.gt.tasks;
 
 import core.Helpers.GeneralParams;
-import core.actions.ClickButtonAction;
-import core.actions.EnterTextAction;
 import core.questions.QuestionValidate;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
@@ -12,7 +10,6 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
 import net.thucydides.core.annotations.Managed;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.*;
@@ -33,11 +30,7 @@ public class ModificarID {
 
     @And("^Da clic sobre Modificar ID$")
     public void daClicSobreModificarID() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Usuario da Clic en modificar ID",
-                "modificar ID",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^Se muestra un mensaje de confirmacion para salir de Modificar ID$")
@@ -54,32 +47,16 @@ public class ModificarID {
     public void enModificarIDDaClicEnElCampo_requerido(String campo) {
         switch (campo) {
             case "numero de tarjeta":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da Clic en numero de tarjeta",
-                        "numero de tarjeta",
-                        "//button[@name='action']"
-                )));
+                actor.attemptsTo(Click.on(""));
                 break;
             case "tipo":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da Clic en tipo de tarjeta",
-                        "tipo de tarjeta",
-                        "//butto n[@name='action']"
-                )));
+                actor.attemptsTo(Click.on(" "));
                 break;
             case "ingreso":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da Clic en ingreso",
-                        "ingreso",
-                        "//button[@name='action']"
-                )));
+                actor.attemptsTo(Click.on("  "));
                 break;
             case "tecnologia":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da Clic en tecnologia",
-                        "tecnologia de tarjeta",
-                        "//button[@name='action']"
-                )));
+                actor.attemptsTo(Click.on("t"));
                 break;
         }
 

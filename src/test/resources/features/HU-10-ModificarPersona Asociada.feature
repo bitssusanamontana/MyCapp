@@ -10,20 +10,18 @@ Feature: Modificar Persona asociada a Unidad Independiente
 
   Scenario: Información que se presenta al seleccionar el botón de crear
     Then El sistema presenta el formulario Modificar persona asociada
-    And Ruta de navegacion
-    And Campo selector Tipo persona
-    And Campo Selector Tipo de Documento
-    And Campo Número de Documento
-    And Campo Nombres
-    And Campo Apellidos
-    And Campo Correo Electrónico
-    And Campo Telefono Fijo
-    And Campo Teléfono Celular
-    And El boton de guardar bloqueado
+    And En modificar persona Ruta de navegacion
+    And En modificar persona Campo selector Tipo persona
+    And En modificar persona Campo Selector Tipo de Documento
+    And En modificar persona Campo Número de Documento
+    And En modificar persona Campo Nombres
+    And En modificar persona Campo Apellidos
+    And En modificar persona Campo Correo Electrónico
+    And En modificar persona Campo Telefono Fijo
+    And En modificar persona Campo Teléfono Celular
+    And En modificar persona El boton de guardar bloqueado
 
   Scenario Outline: Salir del formulario de Mofificación de persona asociada
-    Given Da clic en Unidades Inmobiliarias
-    And da clic en el boton Modificar persona asociada
     When Da clic en una pagina diferente <pagina>
     Then El sistema muestra un mensaje de confirmacion
     Examples:
@@ -32,8 +30,7 @@ Feature: Modificar Persona asociada a Unidad Independiente
       | Cerrar_sesion |
 
   Scenario Outline: Cerrar el mensaje ¿Esta seguro de que desea salir de la página Modificar persona asociada?
-    Given Da clic en Unidades Inmobiliarias
-    And da clic en el boton Modificar persona asociada
+
     And Da clic en una pagina diferente <pagina>
     When Selecciona una opcion del pop up <opcion>
     Then El sistema cierra el pop up
@@ -45,9 +42,9 @@ Feature: Modificar Persona asociada a Unidad Independiente
       | Principal | x      |
 
   Scenario Outline: Borrar información en los campos requeridos
-    When Borra la informacion en el campo <campo_requerido>
-    Then El sistema presenta el mensaje "Campo requerido"
-    And El boton de guardar bloqueado
+    When En modificar persona Borra la informacion en el campo <campo_requerido>
+    Then En modificar persona El sistema presenta el mensaje "Campo requerido"
+    And En modificar persona El boton de guardar bloqueado
     Examples:
       | campo_requerido     |
       | Tipo de Persona     |
@@ -60,16 +57,16 @@ Feature: Modificar Persona asociada a Unidad Independiente
       | Telefono Celular    |
 
   Scenario Outline: Se habilita si o no botón de guardar
-    When <Cambia> toda la informacion en los campos requeridos
-    Then <Se_muestra> habilitado el boton guardar
+    When En modificar persona <Cambia> toda la informacion en los campos requeridos
+    Then En modificar persona <Se_muestra> habilitado el boton guardar
     Examples:
       | Cambia | Se_muestra |
       | Si      | Si         |
       | no      | no         |
 
   Scenario Outline: Cambiar información en campos obligatorios
-    When Ingresa en el campo <campo_requerido> la informacion <informacion>
-    Then Persona asociada Visualiza el resultado esperado <resultado>
+    When En modificar persona Ingresa en el campo <campo_requerido> la informacion <informacion>
+    Then En modificar persona Persona asociada Visualiza el resultado esperado <resultado>
     Examples:
       | campo_requerido     | informacion            | resultado          |
       | Tipo de Persona     | Propietario            | Propietario        |
@@ -82,8 +79,8 @@ Feature: Modificar Persona asociada a Unidad Independiente
       | Telefono Celular    | 3124456678gfdgf#$%$    | 3124456678         |
 
   Scenario Outline: Cambia información errada en campos numéricos
-    When Ingresa en el campo <campo_requerido> la informacion <informacion>
-    Then Visualiza el resultado esperado <resultado>
+    When En modificar persona Ingresa en el campo <campo_requerido> la informacion <informacion>
+    Then En modificar persona Visualiza el resultado esperado <resultado>
     Examples:
       | campo_requerido     | informacion              | resultado            |
       | Numero de Documento | 242424242424242323230000 | 24242424242424232323 |
@@ -91,8 +88,8 @@ Feature: Modificar Persona asociada a Unidad Independiente
       | Telefono Celular    | 12345678901111           | 1234567890           |
 
   Scenario Outline: Cambia información errada en campo email
-    When Ingresa en el email la informacion <informacion>
-    Then Visualiza el mensaje de error
+    When En modificar persona Ingresa en el email la informacion <informacion>
+    Then En modificar persona Visualiza el mensaje de error
     Examples:
       | informacion            |
       | jobarbosa.com          |
@@ -101,7 +98,7 @@ Feature: Modificar Persona asociada a Unidad Independiente
       | jobarbosa%&/@gmail.com |
 
   Scenario: Modificación de Persona asociada a Unidad Independiente
-    When Ingresa toda información en cada uno de los campos requeridos de forma correcta
-    And Da clic en el boton Guardar
-    Then Muestra el mensaje modificación exitosa de persona
+    When En modificar persona Ingresa toda información en cada uno de los campos requeridos de forma correcta
+    And En modificar persona Da clic en el boton Guardar
+    Then En modificar persona Muestra el mensaje modificación exitosa de persona
     And redirige al usuario a la página de Administrar Unidad independiente

@@ -34,20 +34,12 @@ public class CrearRolYPermisos {
 
     @And("^Da clic en Configuracion$")
     public void daClicEnConfiguracion() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Da clic en el menú de configuración",
-                "menú configuración",
-                "/button[@name='action']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @And("^Da clic en Roles$")
     public void daClicEnRoles() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Da clic en Roles",
-                "clic en Roles",
-                "/button[@name='action']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @And("^Da clic en el boton Crear Rol$")

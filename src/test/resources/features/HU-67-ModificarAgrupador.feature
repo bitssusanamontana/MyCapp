@@ -4,8 +4,8 @@ Feature: Modificar agrupador
   Background: Ingreso a Modificar agrupador
     Given Que usuario ingresa a la pagina de inicio
     And Inicia sesión
-    And Se visualiza la pagina Administracion de Unidades Inmobiliarias
-    And Se da clic en el nombre de la Unidad Bits
+    And Da clic en Unidades Inmobiliarias
+    And Da clic sobre la unidad inmobiliaria Bits
     And da clic en Modificar agrupador
 
   Scenario: 1.Información que se presenta al seleccionar el botón de Modificar
@@ -16,20 +16,19 @@ Feature: Modificar agrupador
     And En Modificar agrupador visualiza boton de guardar bloqueado
 
   Scenario Outline: Acciones pop up de confirmación de salir del formulario
-    Given Da clic en una pagina diferente <pagina>
-    When Selecciona una opcion del pop up <opcion>
-    Then El sistema cierra el pop up
-    And Muestra la <pagina> segun la opcion seleccionada
+    Given En Modificar agrupador Ingresa informacion en el campo nombre de agrupacion
+    And En Modificar agrupador Da clic en una pagina diferente <pagina>
+    When En Modificar agrupador Selecciona una opcion del pop up <opcion>
+    Then En Modificar agrupador El sistema cierra el pop up
+    And En Modificar agrupador Muestra la <opcion> segun la opcion seleccionada
     Examples:
-      | pagina    | opcion | pagina          |
-      | Principal | si     | Principal       |
-      | Principal | no     | Crear Agrupador |
-      | Principal | x      | Crear Agrupador |
+      | pagina    | opcion |
+      | Principal | si     |
+      | Principal | no     |
 
   Scenario Outline: 4.No ingresar información en los campos requeridos
     When  En Modificar agrupador borra la informacion del <campo_requerido>
-    And   En Modificar agrupador da clic en el boton guardar
-    Then  En Modificar agrupador se presenta mensaje indicando que el campo es requerido
+    Then  En Modificar agrupador se presenta mensaje indicando que el campo es <campo_requerido>
 
     Examples:
       | campo_requerido                   |
@@ -38,38 +37,32 @@ Feature: Modificar agrupador
 
 
   Scenario Outline: 5.Se habilita si o no botón de guardar
-    When  En Modificar agrupador ingresa al campo <nombre> agrupacion
-    And   En Modificar agrupador ingresa al campo <numero> de unidades
+    When  En Modificar agrupador ingresa al campo <nombre> y <numero> de agrupador
     Then  En Modificar agrupador sistema presenta <habilitado> el boton de guardar
 
     Examples:
       | nombre      | numero | habilitado |
       | Agrupacion1 | 2      | Si         |
       | Agrupacion2 |        | No         |
-      |             | 3      | No         |
 
   Scenario Outline: 6.Ingresar informacion en campo # de Unidades Independientes
     When En Modificar agrupador Ingresa un <valor> para el campo numero de unidades independientes
-    Then En Modificar agrupador El sistema muestra el <resultado>
+    Then En Modificar agrupador en el campo numero de unidades El sistema muestra el <resultado>
 
     Examples:
-      | valor  | resultado |
-      | 10     | 10        |
-      | 55ab   | 55        |
-      | 123456 | 123456    |
-      | 12(6   | 126       |
+      | valor   | resultado |
+      | 10ab%&( | 10        |
 
   Scenario Outline: 7.Ingresar información en el campo alfanumérico Nombre Agrupador, incluyendo caracteres especiales y el espacio
     And  En Modificar agrupador el usuario Da clic en el campo Nombre Agrupador
     When En Modificar agrupador Ingresa un <valor> para el campo nombre de agrupador
-    Then En Modificar agrupador El sistema muestra <resultado>
+    Then En Modificar agrupador en el campo nombre El sistema muestra <resultado>
 
     Examples:
 
-      | valor                                                           | resultado                                             |
-      | Agrupador 4                                                     | agrupador 4                                           |
-      | 123456789123456789123456789123456789123456789123456789123456789 | 12345678912345678912345678912345678912345678912345678 |
-
+      | valor                                                                  | resultado                                          |
+      | Agrupador # 5                                                          | Agrupador # 5                                      |
+      | 1234567890123456789012345678901234567890123456789012345678901234567890 | 12345678901234567890123456789012345678901234567890 |
 
   Scenario Outline:  9.Creación de Agrupador
     When  En Modificar agrupador ingresa al campo <nombre> y <numero> de agrupador
@@ -78,5 +71,5 @@ Feature: Modificar agrupador
 
     Examples:
       | nombre      | numero | mensaje   |
-      | Agrupacion1 | 2      | exito     |
-      | Agrupacion1 | 3      | existente |
+      | Agrupacion1 | 10     | exito     |
+      | TORRE 3     | 3      | existente |

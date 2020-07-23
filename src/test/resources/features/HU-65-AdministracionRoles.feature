@@ -56,8 +56,8 @@ Feature: Administrar roles y permisos
     When Da clic sobre el icono de Eliminar rol de Admin
     And Presenta un pop up de Eliminación
     And El sistema presenta mensaje de eliminación
-    And Las opciones de Si y no
-    And  Da clic sobre la <opcion>
+    And Las opciones de Si y no de eliminacion
+    And  Da clic sobre la <opcion> de eliminacion
     Then El sistema tiene el <resultado>
 
     Examples:

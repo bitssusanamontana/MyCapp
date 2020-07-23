@@ -1,8 +1,6 @@
 package main.gt.tasks;
 
 import core.Helpers.GeneralParams;
-import core.actions.ClickButtonAction;
-import core.actions.EnterTextAction;
 import core.questions.QuestionValidate;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
@@ -11,8 +9,10 @@ import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actions.Enter;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.*;
@@ -35,67 +35,46 @@ public class AdministrarUnidadesInmobiliarias {
     @Then("^El sistema muestra la informacion de las Unidades Inmobiliarias$")
     public void elSistemaMuestraLaInformacionDeLasUnidadesInmobiliarias() {
         // Filtro de búsqueda
-        actor.should(seeThat(the("/button[@name='action']"), isVisible()));
+        actor.should(seeThat(the("//button[@class='colm2 icon_search']"), isVisible()));
         //Etiqueta ‘Administración de Unidades Inmobiliarias’
-        actor.should(seeThat(the("/button[@name='action']"), isVisible()));
+        actor.should(seeThat(the("//h1[@id='h--title-name-estateUnits']"), isVisible()));
         //Sección Tabla
-        actor.should(seeThat(the("/button[@name='action']"), isVisible()));
+        actor.should(seeThat(the("//th[@id='th--estateUnits-0']"), isVisible()));
         //Botón Crear Unidad
-        actor.should(seeThat(the("/button[@name='action']"), isVisible()));
+        actor.should(seeThat(the("#btn--add-estateUnits"), isVisible()));
         //Paginación
-        actor.should(seeThat(the("/button[@name='action']"), isVisible()));
+        actor.should(seeThat(the("//div[@class='pagination']"), isVisible()));
 
     }
 
-    @When("^Selecciona una (.*)$")
+    @When("^En unidades inmobiliarias Selecciona una (.*)$")
     public void seleccionaUnaOpcion(String opcion) {
         switch (opcion) {
             case "consultar":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en consultar",
-                        "Botón consultar",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on("#btn--table-row-view2"));
                 break;
             case "modificar":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en modificar",
-                        "Botón modificar",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on("#btn--table-row-edit2"));
                 break;
-            case "activar":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en activar",
-                        "Check Activar",
-                        "//input[@id='password']"
-                )));
-                break;
+
         }
     }
 
-    @Then("^El sistema realiza una accion (.*)$")
-    public void elSistemaRealizaUnaAccionAccion(String opcion, String accion) {
-        switch (opcion) {
-            case "consultar":
-                actor.should(new QuestionValidate(accion).Execute(new GeneralParams(
+    @Then("^En unidades inmobiliarias El sistema realiza una accion (.*)$")
+    public void elSistemaRealizaUnaAccionAccion(String accion) {
+        switch (accion) {
+            case "Pagina consultar":
+                actor.should(new QuestionValidate("Consultar unidad inmobiliaria").Execute(new GeneralParams(
                         "Página consultar",
                         "pagina consultar",
-                        "//button[@name='action']"
+                        "//h1[@class='tittle']"
                 )));
                 break;
-            case "modificar":
-                actor.should(new QuestionValidate(accion).Execute(new GeneralParams(
+            case "Pagina modificar":
+                actor.should(new QuestionValidate("Modificar unidad inmobiliaria").Execute(new GeneralParams(
                         "Página modificar",
                         "pagina modificar",
-                        "//button[@name='action']"
-                )));
-                break;
-            case "activar":
-                actor.should(new QuestionValidate(accion).Execute(new GeneralParams(
-                        "Mensaje de activación",
-                        "Activación",
-                        "//button[@name='action']"
+                        "//h1[@class='tittle']"
                 )));
                 break;
 
@@ -104,19 +83,15 @@ public class AdministrarUnidadesInmobiliarias {
 
     @When("^Da clic en Crear Unidad Inmobiliaria$")
     public void daClicEnCrearUnidadInmobiliaria() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Usuario da clic en crear",
-                "Botón Crear",
-                "//input[@id='password']"
-        )));
+        actor.attemptsTo(Click.on("#btn--add-estateUnits"));
     }
 
     @And("^El sistema redirecciona a la pagina de Crear Unidad Inmobiliaria$")
     public void elSistemaRedireccionaALaPaginaDeCrearUnidadInmobiliaria() {
-        actor.should(new QuestionValidate("Crear Unidad").Execute(new GeneralParams(
+        actor.should(new QuestionValidate("Crear unidad inmobiliaria").Execute(new GeneralParams(
                 "Página Crear Unidad",
                 "pagina crear Unidad",
-                "//button[@name='action']"
+                "//h1[@class='tittle']"
         )));
     }
 
@@ -124,29 +99,13 @@ public class AdministrarUnidadesInmobiliarias {
     public void daClicEnLosFiltroDeUnidadesInmobiliarias(String filtro) {
         switch (filtro){
             case "Nombre":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en filtro Nombre",
-                        "Filtro nombre",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on(""));
             case "Nit":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en filtro Nit",
-                        "Filtro Nit",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on(""));
             case "Catastro":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en filtro catastro",
-                        "Filtro catastro",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on(""));
             case "Dirección":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en filtro dirección",
-                        "Filtro dirección",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on(""));
         }
 
     }
@@ -155,29 +114,13 @@ public class AdministrarUnidadesInmobiliarias {
     public void enUnidadInmobiliariaSeIngresaInformacionEnElFiltro(String informacion, String filtro) {
         switch (filtro){
             case "Nombre":
-                actor.attemptsTo(new EnterTextAction(informacion).Execute(new GeneralParams(
-                        "Usuario ingresa información en el filtro Nombre",
-                        "Filtro Nombre",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Enter.theValue(informacion).into(""));
             case "Nit":
-                actor.attemptsTo(new EnterTextAction(informacion).Execute(new GeneralParams(
-                        "Usuario ingresa información en el filtro Nit",
-                        "Filtro Nit",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Enter.theValue(informacion).into(""));
             case "Catastro":
-                actor.attemptsTo(new EnterTextAction(informacion).Execute(new GeneralParams(
-                        "Usuario ingresa información en el filtro catastro",
-                        "Filtro catastro",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Enter.theValue(informacion).into(""));
             case "Dirección":
-                actor.attemptsTo(new EnterTextAction(informacion).Execute(new GeneralParams(
-                        "Usuario ingresa información en el filtro dirección",
-                        "Filtro dirección",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Enter.theValue(informacion).into(""));
         }
     }
 
@@ -202,5 +145,12 @@ public class AdministrarUnidadesInmobiliarias {
                 "resultado filtro",
                 "//button[@name='action']"
         )));
+    }
+
+    @When("^En unidades inmobiliarias Ingresa información en filtro de busqueda (.*) y da Enter$")
+    public void enUnidadesInmobiliariasIngresaInformacionEnFiltroDeBusquedaBusquedaYDaEnter(String informacion) {
+        actor.attemptsTo(
+                Enter.theValue(informacion).into("//input[@id='ipt--search-filterId']").thenHit(Keys.ENTER)
+        );
     }
 }

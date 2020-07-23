@@ -10,20 +10,18 @@ Feature: Crear Persona asociada a Unidad Independiente
 
   Scenario: Información que se presenta al seleccionar el botón de crear
     Then El sistema presenta el formulario crear persona asociada
-    And Ruta de navegacion
-    And Campo selector Tipo persona
-    And Campo Selector Tipo de Documento
-    And Campo Número de Documento
-    And Campo Nombres
-    And Campo Apellidos
-    And Campo Correo Electrónico
-    And Campo Telefono Fijo
-    And Campo Teléfono Celular
-    And El boton de guardar bloqueado
+    And En crear persona asociada Ruta de navegacion
+    And En crear persona asociada Campo selector Tipo persona
+    And En crear persona asociada Campo Selector Tipo de Documento
+    And En crear persona asociada Campo Número de Documento
+    And En crear persona asociada Campo Nombres
+    And En crear persona asociada Campo Apellidos
+    And En crear persona asociada Campo Correo Electrónico
+    And En crear persona asociada Campo Telefono Fijo
+    And En crear persona asociada Campo Teléfono Celular
+    And En crear persona asociada El boton de guardar bloqueado
 
   Scenario Outline: Salir del formulario de Creación de persona asociada
-    Given Da clic en Unidades Inmobiliarias
-    And da clic en el boton crear persona asociada
     When Da clic en una pagina diferente <pagina>
     Then El sistema muestra un mensaje de confirmacion
     Examples:
@@ -32,8 +30,6 @@ Feature: Crear Persona asociada a Unidad Independiente
       | Cerrar_sesion |
 
   Scenario Outline: Cerrar el mensaje ¿Esta seguro de que desea salir de la página crear persona asociada?
-    Given Da clic en Unidades Inmobiliarias
-    And da clic en el boton crear persona asociada
     And Da clic en una pagina diferente <pagina>
     When Selecciona una opcion del pop up <opcion>
     Then El sistema cierra el pop up
@@ -45,10 +41,10 @@ Feature: Crear Persona asociada a Unidad Independiente
       | Principal | x      |
 
   Scenario Outline: No ingresar información en los campos requeridos
-    When Da clic en el <campo_requerido>
-    And Da clic por fuera del campo
-    Then El sistema presenta el mensaje "Campo requerido"
-    And El boton de guardar bloqueado
+    When En crear persona asociada Da clic en el <campo_requerido>
+    And En crear persona asociada Da clic en el boton Guardar
+    Then En crear persona asociada El sistema presenta el mensaje "Campo requerido"
+    And En crear persona asociada El boton de guardar bloqueado
     Examples:
       | campo_requerido     |
       | Tipo de Persona     |
@@ -61,16 +57,16 @@ Feature: Crear Persona asociada a Unidad Independiente
       | Telefono Celular    |
 
   Scenario Outline: Se habilita si o no botón de guardar
-    When <Ingresa> toda la informacion en los campos requeridos
-    Then <Se_muestra> habilitado el boton guardar
+    When En crear persona asociada <Ingresa> toda la informacion en los campos requeridos
+    Then En crear persona asociada <Se_muestra> habilitado el boton guardar
     Examples:
       | Ingresa | Se_muestra |
       | Si      | Si         |
       | no      | no         |
 
   Scenario Outline: Ingresar información en campos obligatorios
-    When Ingresa en el campo <campo_requerido> la informacion <informacion>
-    Then Visualiza el resultado esperado <resultado>
+    When En crear persona asociada Ingresa en el campo <campo_requerido> la informacion <informacion>
+    Then En crear persona asociada Visualiza el resultado esperado <resultado>
     Examples:
       | campo_requerido     | informacion            | resultado          |
       | Tipo de Persona     | Propietario            | Propietario        |
@@ -83,8 +79,8 @@ Feature: Crear Persona asociada a Unidad Independiente
       | Telefono Celular    | 3124456678gfdgf#$%$    | 3124456678         |
 
   Scenario Outline: Ingresar información errada en campos numéricos
-    When Ingresa en el campo <campo_requerido> la informacion <informacion>
-    Then Visualiza el resultado esperado <resultado>
+    When En crear persona asociada Ingresa en el campo <campo_requerido> la informacion <informacion>
+    Then En crear persona asociada Visualiza el resultado esperado <resultado>
     Examples:
       | campo_requerido     | informacion              | resultado            |
       | Numero de Documento | 242424242424242323230000 | 24242424242424232323 |
@@ -92,8 +88,8 @@ Feature: Crear Persona asociada a Unidad Independiente
       | Telefono Celular    | 12345678901111           | 1234567890           |
 
   Scenario Outline: Ingresar información errada en campo email
-    When Ingresa en el email la informacion <informacion>
-    Then Visualiza el mensaje de error
+    When En crear persona asociada Ingresa en el email la informacion <informacion>
+    Then En crear persona asociada Visualiza el mensaje de error
     Examples:
       | informacion            |
       | jobarbosa.com          |
@@ -102,7 +98,7 @@ Feature: Crear Persona asociada a Unidad Independiente
       | jobarbosa%&/@gmail.com |
 
   Scenario: Creación de Persona asociada a Unidad Independiente
-    When Ingresa toda información en cada uno de los campos requeridos de forma correcta
-    And Da clic en el boton Guardar
-    Then Muestra el mensaje creacion exitosa de persona
+    When En crear persona asociada Ingresa toda información en cada uno de los campos requeridos de forma correcta
+    And En crear persona asociada Da clic en el boton Guardar
+    Then En crear persona asociada Muestra el mensaje creacion exitosa de persona
     And redirige al usuario a la página de Administrar Unidad independiente

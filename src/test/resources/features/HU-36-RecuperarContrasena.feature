@@ -30,8 +30,6 @@ Feature: Como usuario Quiero recuperar la contraseña Para ingresar a la aplicac
     Examples:
       | usuario  |
       | rherrera |
-      | ttest    |
-      | vxyz     |
 
   Scenario Outline: Ingreso de información para recuperar la contraseña
     When Da clic en el enlace ¿Olvidaste tu contrasena?
@@ -41,7 +39,7 @@ Feature: Como usuario Quiero recuperar la contraseña Para ingresar a la aplicac
     Examples:
       | usuario                         | Mensaje  |
       | 4324242                         | Invalido |
-      | CC123                           | Inactivo |
+      | CC1234                           | Inactivo |
       | susana.montana@bitsamericas.com | Exitoso  |
 
   Scenario Outline: Selección del botón de volver al realizar la recuperación de contraseña

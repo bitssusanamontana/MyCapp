@@ -35,8 +35,7 @@ public class EditarIngresoVisitante {
 
     @And("^Da clic sobre el botón Editar Ingreso de visitante$")
     public void daClicRegistroVisitante() {
-        actor.attemptsTo(
-                MoveMouse.to("//a[contains(text(),'registro visitante')]").andThen(Actions::click));
+        actor.attemptsTo(Click.on(""));
     }
 
     @And("^Visualiza Label EDITAR INGRESO DE VISITANTE$")

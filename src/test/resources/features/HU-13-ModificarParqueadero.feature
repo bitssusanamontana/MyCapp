@@ -1,23 +1,23 @@
-Feature: Crear Parqueadero
-  Como usuario Quiero crear un Parqueadero Para iniciar su gestión.
+Feature: Modificar Parqueadero
+  Como usuario Quiero Modificar un Parqueadero Para continuar su gestión.
 
-  Background: Ingreso a Crear Parqueadero
+  Background: Ingreso a Modificar Parqueadero
     Given Que usuario ingresa a la pagina de inicio
     And Inicia sesión
     And Se visualiza la pagina Administracion de Unidades Inmobiliarias
     And Se da clic en el nombre de la Unidad Bits
     And da clic en Parqueaderos
-    And da clic en crear Parqueadero
+    And da clic en Modificar Parqueadero x
 
-  Scenario: 1.Información que se presenta al seleccionar el botón de crear
-    Then  El sistema presenta formulario Crear Parqueadero
-    And  En crear Parqueadero visualiza el formulario
-    And En crear Parqueadero visualiza campo tipo de parqueadero
-    And En crear Parqueadero visualiza campo agrupacion
-    And En crear Parqueadero visualiza campo unidad independiente
-    And En crear Parqueadero visualiza campo numero de parqueadero
-    And En crear Parqueadero visualiza campo tipo de vehiculo
-    And En crear Parqueadero visualiza boton de guardar bloqueado
+  Scenario: 1.Información que se presenta al seleccionar el botón de Modificar
+    Then  El sistema presenta formulario Modificar Parqueadero x
+    And  En Modificar Parqueadero visualiza el formulario x
+    And En Modificar Parqueadero visualiza campo tipo de parqueadero x
+    And En Modificar Parqueadero visualiza campo agrupacion x
+    And En Modificar Parqueadero visualiza campo unidad independiente x
+    And En Modificar Parqueadero visualiza campo numero de parqueadero x
+    And En Modificar Parqueadero visualiza campo tipo de vehiculo x
+    And En Modificar Parqueadero visualiza boton de guardar bloqueado
 
   Scenario Outline: Acciones pop up de confirmación de salir del formulario
     Given Da clic en una pagina diferente <pagina>
@@ -31,9 +31,9 @@ Feature: Crear Parqueadero
       | Principal | x      | Crear Agrupador |
 
   Scenario Outline: 4.No ingresar información en los campos requeridos
-    When  En crear Parqueadero da clic en <campo_requerido>
-    And   En crear Parqueadero da clic en el boton guardar
-    Then  En crear Parqueadero se presenta mensaje indicando que el campo es requerido
+    When  En Modificar Parqueadero borra la información en <campo_requerido>
+    And   En Modificar Parqueadero da clic en el boton guardar
+    Then  En Modificar Parqueadero se presenta mensaje indicando que el campo es requerido
 
     Examples:
       | campo_requerido       |
@@ -45,8 +45,8 @@ Feature: Crear Parqueadero
 
 
   Scenario Outline: 5.Se habilita si o no botón de guardar
-    When  En crear Parqueadero ingresa o selecciona informacion en los campos <tipo> <agrupacion> <unidad> <numero> y <vehiculo>
-    Then  En crear Parqueadero sistema presenta <habilitado> el boton de guardar
+    When  En Modificar Parqueadero ingresa o selecciona informacion en los campos <tipo> <agrupacion> <unidad> <numero> y <vehiculo>
+    Then  En Modificar Parqueadero sistema presenta <habilitado> el boton de guardar
 
     Examples:
       | tipo      | agrupacion | unidad | numero | vehiculo | habilitado |
@@ -55,9 +55,9 @@ Feature: Crear Parqueadero
       | visitante |            |        | 006    | carro    | no         |
 
 
-  Scenario Outline: 6.Ingresar informacion en los campos de crear parqueadero
-    When En crear Parqueadero Ingresa o selecciona en el <campo> del formulario un <valor>
-    Then En crear Parqueadero El sistema muestra el <resultado>
+  Scenario Outline: 6.Ingresar informacion en los campos de Modificar parqueadero
+    When En Modificar Parqueadero Ingresa o selecciona en el <campo> del formulario un <valor>
+    Then En Modificar Parqueadero El sistema muestra el <resultado>
 
     Examples:
       | campo                | valor                                         | resultado            |
@@ -67,10 +67,10 @@ Feature: Crear Parqueadero
       | numero parqueadero   | asdfghjkl #$%&/123456789012345678901234567890 | asdfghjkl 1234567890 |
       | vehiculo             | Carro                                         | Carro                |
 
-  Scenario Outline:  9.Creación de Parqueadero
-    When  En crear Parqueadero ingresa o selecciona informacion en los campos <tipo> <agrupacion> <unidad> <numero> y <vehiculo>
-    And   En crear Parqueadero da clic en boton guardar
-    Then  En crear Parqueadero sistema presenta el <mensaje> de exito o error
+  Scenario Outline:  9.Modificación de Parqueadero
+    When  En Modificar Parqueadero ingresa o selecciona informacion en los campos <tipo> <agrupacion> <unidad> <numero> y <vehiculo>
+    And   En Modificar Parqueadero da clic en boton guardar
+    Then  En Modificar Parqueadero sistema presenta el <mensaje> de exito o error
 
     Examples:
       | tipo   | agrupacion | unidad | numero | vehiculo | mensaje   |

@@ -12,6 +12,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Scroll;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.By;
@@ -54,10 +55,7 @@ public class Footer {
 
     @When("^Da clic sobre el logo de Bits Américas$")
     public void daClicSobreElLogoDeBitsAmericas() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "clic en logo",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^El sistema debe abrir una nueva ventana$")

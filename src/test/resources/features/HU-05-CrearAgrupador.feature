@@ -4,8 +4,8 @@ Feature: Crear agrupador
   Background: Ingreso a Crear Agrupador
     Given Que usuario ingresa a la pagina de inicio
     And Inicia sesión
-    And Se visualiza la pagina Administracion de Unidades Inmobiliarias
-    And Se da clic en el nombre de la Unidad Bits
+    And Da clic en Unidades Inmobiliarias
+    And Da clic sobre la unidad inmobiliaria Bits
     And da clic en Crear agrupador
 
   Scenario: 1.Información que se presenta al seleccionar el botón de crear
@@ -16,25 +16,23 @@ Feature: Crear agrupador
     And En crear agrupador visualiza boton de guardar bloqueado
 
   Scenario Outline: Acciones pop up de confirmación de salir del formulario
-    Given Da clic en una pagina diferente <pagina>
-    When Selecciona una opcion del pop up <opcion>
-    Then El sistema cierra el pop up
-    And Muestra la <pagina> segun la opcion seleccionada
+    When En crear agrupador Ingresa informacion en el campo nombre de agrupacion
+    And En crear agrupador Da clic en una pagina diferente <pagina>
+    And En crear agrupador Selecciona una opcion del pop up <opcion>
+    Then En crear agrupador Muestra la <opcion> segun la opcion seleccionada
     Examples:
-      | pagina    | opcion | pagina          |
-      | Principal | si     | Principal       |
-      | Principal | no     | Crear Agrupador |
-      | Principal | x      | Crear Agrupador |
+      | pagina    | opcion |
+      | Principal | si     |
+      | Principal | no     |
 
   Scenario Outline: 4.No ingresar información en los campos requeridos
-    When  En crear agrupador da clic en <campo_requerido>
-    And   En crear agrupador da clic en el boton guardar
-    Then  En crear agrupador se presenta mensaje indicando que el campo es requerido
+    When  En crear agrupador da clic en <campo_requerido> e ingresa información en el otro campo
+    Then  En crear agrupador se presenta mensaje indicando que el campo es <campo_requerido>
 
     Examples:
       | campo_requerido                   |
       | Nombre Agrupador                  |
-      | numero de Unidades Independientes |
+      | Numero de Unidades Independientes |
 
 
   Scenario Outline: 5.Se habilita si o no botón de guardar
@@ -46,29 +44,25 @@ Feature: Crear agrupador
       | nombre      | numero | habilitado |
       | Agrupacion1 | 2      | Si         |
       | Agrupacion2 |        | No         |
-      |             | 3      | No         |
 
   Scenario Outline: 6.Ingresar informacion en campo # de Unidades Independientes
     When En crear agrupador Ingresa un <valor> para el campo numero de unidades independientes
-    Then En crear agrupador El sistema muestra el <resultado>
+    Then En crear agrupador en el campo numero de unidades El sistema muestra el <resultado>
 
     Examples:
-      | valor  | resultado |
-      | 10     | 10        |
-      | 55ab   | 55        |
-      | 123456 | 123456    |
-      | 12(6   | 126       |
+      | valor   | resultado |
+      | 10(&%AB | 10        |
 
   Scenario Outline: 7.Ingresar información en el campo alfanumérico Nombre Agrupador, incluyendo caracteres especiales y el espacio
     And  En crear agrupador el usuario Da clic en el campo Nombre Agrupador
     When En crear agrupador Ingresa un <valor> para el campo nombre de agrupador
-    Then En crear agrupador El sistema muestra <resultado>
+    Then En crear agrupador en el campo nombre El sistema muestra <resultado>
 
     Examples:
 
-      | valor                                                           | resultado                                             |
-      | Agrupador 4                                                     | agrupador 4                                           |
-      | 123456789123456789123456789123456789123456789123456789123456789 | 12345678912345678912345678912345678912345678912345678 |
+      | valor                                                                  | resultado                                          |
+      | Agrupador # 4                                                          | Agrupador # 4                                      |
+      | 1234567890123456789012345678901234567890123456789012345678901234567890 | 12345678901234567890123456789012345678901234567890 |
 
 
   Scenario Outline:  9.Creación de Agrupador
@@ -77,6 +71,7 @@ Feature: Crear agrupador
     Then  En crear agrupador sistema presenta el <mensaje> de éxito o error
 
     Examples:
-      | nombre      | numero | mensaje   |
-      | Agrupacion1 | 2      | exito     |
-      | Agrupacion1 | 3      | existente |
+      | nombre   | numero | mensaje   |
+      | Torre 8 | 10     | exito     |
+      | Torre 30 | 10     | existente |
+

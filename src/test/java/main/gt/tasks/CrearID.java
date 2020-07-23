@@ -11,6 +11,7 @@ import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actions.Enter;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -31,13 +32,10 @@ public class CrearID {
         actor = Actor.named("usuario");
         actor.can(BrowseTheWeb.with(navegador));
     }
+
     @And("^Da clic sobre Crear ID$")
     public void daClicSobreCrearID() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Usuario da Clic en Crear ID",
-                "Crear ID",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^El usuario visualiza la ruta de navegacion$")
@@ -95,32 +93,16 @@ public class CrearID {
     public void enCrearIDDaClicEnElCampo_requerido(String campo) {
         switch (campo) {
             case "numero de tarjeta":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da Clic en numero de tarjeta",
-                        "numero de tarjeta",
-                        "//button[@name='action']"
-                )));
+                actor.attemptsTo(Click.on(""));
                 break;
             case "tipo":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da Clic en tipo de tarjeta",
-                        "tipo de tarjeta",
-                        "//butto n[@name='action']"
-                )));
+                actor.attemptsTo(Click.on(" "));
                 break;
             case "ingreso":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da Clic en ingreso",
-                        "ingreso",
-                        "//button[@name='action']"
-                )));
+                actor.attemptsTo(Click.on("  "));
                 break;
             case "tecnologia":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da Clic en tecnologia",
-                        "tecnologia de tarjeta",
-                        "//button[@name='action']"
-                )));
+                actor.attemptsTo(Click.on("   "));
                 break;
         }
 
@@ -128,11 +110,7 @@ public class CrearID {
 
     @When("^Ingresa el (.*) en el campo$")
     public void ingresaElNumero_tarjetaEnElCampo(String numero_tarjeta) {
-        actor.attemptsTo(new EnterTextAction(numero_tarjeta).Execute(new GeneralParams(
-                "Usuario Ingresa el campo numero de tarjeta",
-                "campo numero de tarjeta",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Enter.theValue(numero_tarjeta).into(""));
     }
 
     @Then("^El sistema muestra un (.*)$")
@@ -146,18 +124,14 @@ public class CrearID {
 
     @When("^Ingresa informacion en el campo (.*)$")
     public void ingresaInformacionEnElCampoNumero_tarjeta(String numero_tarjeta) {
-        actor.attemptsTo(new EnterTextAction(numero_tarjeta).Execute(new GeneralParams(
-                "Usuario Ingresa el campo numero de tarjeta",
-                "campo numero de tarjeta",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Enter.theValue(numero_tarjeta).into(""));
     }
 
     @And("^Selecciona los datos de los campos (.*), (.*) y (.*)$")
     public void seleccionaLosDatosDeLosCamposTipoIngresoYTecnologia(String tipo, String ingreso, String tecnologia) {
-        actor.attemptsTo(Click.on(By.cssSelector("#menuTipo"), By.linkText(tipo)));
-        actor.attemptsTo(Click.on(By.cssSelector("#menuIngreso"), By.linkText(ingreso)));
-        actor.attemptsTo(Click.on(By.cssSelector("#menuTecnologia"), By.linkText(tecnologia)));
+        actor.attemptsTo(Click.on(By.cssSelector("#mainMenu"), By.linkText(tipo)));
+        actor.attemptsTo(Click.on(By.cssSelector("#mainMenu"), By.linkText(ingreso)));
+        actor.attemptsTo(Click.on(By.cssSelector("#mainMenu"), By.linkText(tecnologia)));
     }
 
     @Then("^(.*) se habilita el boton guardar$")
@@ -175,16 +149,12 @@ public class CrearID {
 
     @And("^Da clic en Guardar$")
     public void daClicEnGuardar() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Usuario da Clic en Guardar",
-                "Botón guardar",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^Se presenta un (.*)$")
     public void sePresentaUnResultado(String resultado) {
-        switch (resultado){
+        switch (resultado) {
             case "ID existe":
                 actor.should(new QuestionValidate("El número de la tarjeta ya está en uso, por favor ingresar uno diferente").Execute(new GeneralParams(
                         "Mensaje número de tarjeta existente",
@@ -204,7 +174,7 @@ public class CrearID {
 
     @Then("^Se presenta (.*)$")
     public void sePresentaError(String error) {
-        switch (error){
+        switch (error) {
             case "400":
                 actor.should(new QuestionValidate("Error 400").Execute(new GeneralParams(
                         "Mensaje Error 400",

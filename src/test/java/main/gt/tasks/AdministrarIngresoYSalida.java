@@ -1,8 +1,6 @@
 package main.gt.tasks;
 
 import core.Helpers.GeneralParams;
-import core.actions.ClickButtonAction;
-import core.actions.EnterTextAction;
 import core.questions.QuestionValidate;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
@@ -10,10 +8,9 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
-import net.serenitybdd.screenplay.actions.MoveMouse;
+import net.serenitybdd.screenplay.actions.Click;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.*;
 import static net.serenitybdd.screenplay.questions.WebElementQuestion.the;
@@ -33,8 +30,7 @@ public class AdministrarIngresoYSalida {
 
     @And("^Da clic en Administrar Entrada y Salida$")
     public void daClicEnAdministrarEntradaYSalida() {
-        actor.attemptsTo(
-                MoveMouse.to("//a[contains(text(),'Administrar entrada y salida')]").andThen(Actions::click));
+        actor.attemptsTo(Click.on(""));
     }
 
     @And("^Label Administracion de Entrada y Salida$")
@@ -68,8 +64,7 @@ public class AdministrarIngresoYSalida {
 
     @When("^Da clic en Registrar Ingreso$")
     public void daClicEnRegistrarIngreso() {
-        actor.attemptsTo(
-                MoveMouse.to("//a[contains(text(),'registrar ingreso')]").andThen(Actions::click));
+        actor.attemptsTo(Click.on(""));
     }
 
     @And("^El sistema redirecciona a la pagina de Registrar Ingreso$")
@@ -86,34 +81,18 @@ public class AdministrarIngresoYSalida {
         switch (opcion) {
 
             case "Consultar":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en consultar",
-                        "Botón consultar",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on(""));
                 break;
 
             case "Modificar":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en modificar",
-                        "Botón modificar",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on(" "));
                 break;
 
             case "Salida":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en salida",
-                        "Botón salida",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on("  "));
                 break;
             case "Anotacion":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en anotacion",
-                        "Botón anotacion",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on("   "));
                 break;
         }
     }

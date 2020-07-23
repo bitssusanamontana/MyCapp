@@ -15,6 +15,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
 
+import java.util.function.Predicate;
+
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.hasValue;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static net.serenitybdd.screenplay.questions.WebElementQuestion.the;
@@ -120,6 +122,7 @@ public class IngresoCredenciales {
     @Then("^El sistema presenta la página Administracion de roles$")
     public void elSistemaPresentaLaPaginaAdministracionDeRoles() {
         actor.should(seeThat(the("//h1[@id='h--title-name-rol']"), isVisible()));
+        actor.should(seeThat(the("//h1[@id='h--title-name-rol']"), Predicate.isEqual("Administración de Roles")));
     }
 
 }

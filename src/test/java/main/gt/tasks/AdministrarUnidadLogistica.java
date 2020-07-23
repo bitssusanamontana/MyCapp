@@ -1,8 +1,6 @@
 package main.gt.tasks;
 
 import core.Helpers.GeneralParams;
-import core.actions.ClickButtonAction;
-import core.actions.EnterTextAction;
 import core.questions.QuestionValidate;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
@@ -10,6 +8,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actions.Enter;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.WebDriver;
 
@@ -31,12 +31,8 @@ public class AdministrarUnidadLogistica {
     }
 
     @And("^Da clic en Unidades Logísticas$")
-    public void daClicEnUnidadesLogísticas() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Usuario da clic en Unidades Logisticas",
-                "Unidades logisticas",
-                "//input[@id='password']"
-        )));
+    public void daClicEnUnidadesLogisticas() {
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^Visualiza la Ruta de navegacion$")
@@ -45,7 +41,7 @@ public class AdministrarUnidadLogistica {
     }
 
     @And("^Visualiza Label Administracion de Unidades Logísticas$")
-    public void visualizaLabelAdministracionDeUnidadesLogísticas() {
+    public void visualizaLabelAdministracionDeUnidadesLogisticas() {
         actor.should(seeThat(the("/button[@name='action']"), isVisible()));
     }
 
@@ -68,32 +64,16 @@ public class AdministrarUnidadLogistica {
     public void daClicSobreElFiltroDeUnidadLogistica(String filtro) {
         switch (filtro){
             case "Tipo":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en tipo",
-                        "filtro tipo",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on(""));
                 break;
             case "Nombre":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en nombre",
-                        "filtro nombre",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on(" "));
                 break;
             case "Ubicacion":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en ubicacion",
-                        "filtro ubicacion",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on("  "));
                 break;
             case "Activa":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en activa",
-                        "filtro activa",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on("   "));
                 break;
         }
     }
@@ -107,32 +87,16 @@ public class AdministrarUnidadLogistica {
     public void enElFiltroSeIngresaInformacion(String filtro, String informacion) {
         switch (filtro){
             case "Tipo":
-                actor.attemptsTo(new EnterTextAction(informacion).Execute(new GeneralParams(
-                        "Usuario ingresa texto en campo búsqueda",
-                        "Campo búsqueda",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Enter.theValue(informacion).into(""));
                 break;
             case "Nombre":
-                actor.attemptsTo(new EnterTextAction(informacion).Execute(new GeneralParams(
-                        "Usuario ingresa texto en campo búsqueda",
-                        "Campo búsqueda nombre",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Enter.theValue(informacion).into(" "));
                 break;
             case "Ubicacion":
-                actor.attemptsTo(new EnterTextAction(informacion).Execute(new GeneralParams(
-                        "Usuario ingresa texto en campo búsqueda",
-                        "Campo búsqueda ubicacion",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Enter.theValue(informacion).into("   "));
                 break;
             case "Activa":
-                actor.attemptsTo(new EnterTextAction(informacion).Execute(new GeneralParams(
-                        "Usuario ingresa texto en campo búsqueda",
-                        "Campo búsqueda Activa",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Enter.theValue(informacion).into("  "));
                 break;
 
         }
@@ -158,11 +122,7 @@ public class AdministrarUnidadLogistica {
 
     @When("^Da clic en Crear Unidad logistica$")
     public void daClicEnCrearUnidadLogistica() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Usuario da clic en Crear Unidad Logistica",
-                "Crear Unidad logistica",
-                "//input[@id='password']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @And("^El sistema redirecciona a la pagina de Crear Unidad logistica$")

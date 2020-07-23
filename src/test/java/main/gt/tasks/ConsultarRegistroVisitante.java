@@ -37,8 +37,7 @@ public class ConsultarRegistroVisitante {
 
     @When("^Da clic en Consultar registro de visitante$")
     public void daClicEnConsultarRegistroVisitante() {
-        actor.attemptsTo(
-                MoveMouse.to("//a[contains(text(),'Ingresar')]").andThen(Actions::click));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^Se visualiza formulario consultar persona asociada$")

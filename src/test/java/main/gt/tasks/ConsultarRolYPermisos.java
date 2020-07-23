@@ -9,6 +9,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.actions.Click;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.WebDriver;
 
@@ -29,11 +30,7 @@ public class ConsultarRolYPermisos {
 
     @When("^Da clic en Consultar el rol de Administrador$")
     public void daClicEnConsultarElRolDeAdministrador() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Da clic en Consultar Rol",
-                "clic en Consultar Rol",
-                "/button[@name='action']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^El sistema presenta la informacion como consulta en los campos$")
@@ -64,11 +61,7 @@ public class ConsultarRolYPermisos {
 
     @And("^Da clic en el boton regresar$")
     public void daClicEnElBotonRegresar() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Da clic en Regresar",
-                "clic en Regresar",
-                "/button[@name='action']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^El sistema debe presentar la página de Administrar roles$")

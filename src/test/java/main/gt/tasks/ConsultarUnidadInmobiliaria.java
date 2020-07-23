@@ -8,6 +8,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.actions.Click;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.WebDriver;
 
@@ -25,11 +26,7 @@ public class ConsultarUnidadInmobiliaria {
 
     @When("^Da clic en Consultar Unidad Inmobiliaria Bits$")
     public void daClicEnConsultarUnidadInmobiliariaBits() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Da clic en Consultar Unidad",
-                "clic en Consultar Unidad",
-                "/button[@name='action']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^El sistema presenta la informacion como consulta en los campos de consulta$")

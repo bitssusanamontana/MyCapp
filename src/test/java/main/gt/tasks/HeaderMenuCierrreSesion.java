@@ -1,7 +1,6 @@
 package main.gt.tasks;
 
 import core.Helpers.GeneralParams;
-import core.actions.ClickButtonAction;
 import core.questions.QuestionValidate;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
@@ -9,6 +8,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.actions.Click;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.WebDriver;
 
@@ -30,11 +30,7 @@ public class HeaderMenuCierrreSesion {
 
     @When("^Da clic en el logo de la unidad inmobiliaria en el header$")
     public void daClicEnElLogoDeLaUnidadInmobiliariaEnElHeader() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Usuario da clic sobre logo",
-                "logo",
-                "/input[@id='password']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^El sistema presenta una ventana emergente para realizar la configuración de logo$")
@@ -83,20 +79,12 @@ public class HeaderMenuCierrreSesion {
 
     @And("^Da clic sobre el botón de seleccionar imagen$")
     public void daClicSobreElBotonDeSeleccionarImagen() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Usuario da clic sobre seleccionar imagen",
-                "Seleccionar imagen",
-                "/input[@id='password']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @When("^Un usuario administrador selecciona el botón guardar$")
     public void unUsuarioAdministradorSeleccionaElBotonGuardar() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Usuario da clic sobre Botón guardar",
-                "Botón guardar",
-                "/input[@id='password']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @And("^Cierra la ventana emergente$")
@@ -118,30 +106,18 @@ public class HeaderMenuCierrreSesion {
     public void daClicSobreUnaPaginaDelMenu(String pagina) {
         switch (pagina) {
             case "Inicio":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic sobre Inicio",
-                        "Inicio",
-                        "/input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on(""));
                 break;
             case "Unidad Inmobiliaria":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic sobre Unidad Inmobiliaria",
-                        "Unidad Inmobiliaria",
-                        "/inp ut[@id='password']"
-                )));
+                actor.attemptsTo(Click.on(" "));
                 break;
             case "Crear Unidad Inmobiliaria":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic sobre Botón guardar",
-                        "Botón guardar",
-                        "/input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on("  "));
                 break;
         }
     }
 
-    @Then("^El sistema muestra la (.*)$")
+    @Then("^En el Header menu El sistema muestra la (.*)$")
     public void elSistemaMuestraLaRuta_de_navegacion(String ruta) {
         actor.should(new QuestionValidate(ruta).Execute(new GeneralParams(
                 "Ruta de navegación",
@@ -165,19 +141,11 @@ public class HeaderMenuCierrreSesion {
     public void daClicSobreUnEnlaceDeLaRuta_de_navegacion(String enlace, String ruta) {
         switch (ruta) {
             case "Unidad Inmobiliaria/Crear":
-                if (enlace.equals("Unidad Inmobiliria")){actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic sobre Botón guardar",
-                        "Botón guardar",
-                        "/input[@id='password']"
-                )));
+                if (enlace.equals("Unidad Inmobiliria")){actor.attemptsTo(Click.on(""));
                 }
                 break;
             case "Unidad Independiente/Crear":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic sobre Botón guardar",
-                        "Botón guardar",
-                        "/input[@id='p assword']"
-                )));
+                actor.attemptsTo(Click.on(""));
                 break;
         }
     }
@@ -193,11 +161,7 @@ public class HeaderMenuCierrreSesion {
 
     @When("^Da clic sobre la sección de perfil$")
     public void daClicSobreLaSeccionDePerfil() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Usuario da clic sobre Botón guardar",
-                "Botón guardar",
-                "/input[@id='password']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^El sistema debe presentar una ventana con las opciones$")
@@ -207,11 +171,7 @@ public class HeaderMenuCierrreSesion {
 
     @And("^Da clic sobre opción de cambiar foto perfil$")
     public void daClicSobreOpcionDeCambiarFotoPerfil() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Usuario da clic sobre Botón guardar",
-                "Botón guardar",
-                "/input[@id='password']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^El sistema presenta una ventana emergente para realizar el cambio de imagen$")
@@ -226,11 +186,7 @@ public class HeaderMenuCierrreSesion {
 
     @When("^Un usuario selecciona el botón guardar$")
     public void unUsuarioSeleccionaElBotonGuardar() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Usuario da clic sobre Botón guardar",
-                "Botón guardar",
-                "/input[@id='password']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @And("^Actualiza la imagen de perfil del usuario autenticado$")

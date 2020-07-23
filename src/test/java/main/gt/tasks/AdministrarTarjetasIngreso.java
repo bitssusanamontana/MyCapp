@@ -1,7 +1,6 @@
 package main.gt.tasks;
 
 import core.Helpers.GeneralParams;
-import core.actions.ClickButtonAction;
 import core.actions.EnterTextAction;
 import core.questions.QuestionValidate;
 import cucumber.api.java.Before;
@@ -10,10 +9,10 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
-import net.serenitybdd.screenplay.actions.MoveMouse;
+import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actions.Enter;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.*;
 import static net.serenitybdd.screenplay.questions.WebElementQuestion.the;
@@ -34,8 +33,7 @@ public class AdministrarTarjetasIngreso {
 
     @And("^Da clic en Tarjetas de Ingreso$")
     public void daClicEnTarjetasDeIngreso() {
-        actor.attemptsTo(
-                MoveMouse.to("//a[contains(text(),'tarjetas ingreso')]").andThen(Actions::click));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^El sistema presenta la Ruta de navegacion$")
@@ -80,39 +78,19 @@ public class AdministrarTarjetasIngreso {
     public void daClicSobreCadaFiltroDeTarjetaDeIngreso(String filtro) {
         switch (filtro){
             case "ID":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en filtro Tarjetas de Ingreso",
-                        "filtro Tarjetas de Ingreso",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on(""));
                 break;
             case "Numero":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en filtro Tarjetas de Ingreso",
-                        "filtro Tarjetas de Ingreso",
-                        "//input[ @id='password']"
-                )));
+                actor.attemptsTo(Click.on(" "));
                 break;
             case "Tipo":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en filtro Tarjetas de Ingreso",
-                        "filtro Tarjetas de Ingreso",
-                        "//inp ut[@id='password']"
-                )));
+                actor.attemptsTo(Click.on("  "));
                 break;
             case "Ingreso":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en filtro Tarjetas de Ingreso",
-                        "filtro Tarjetas de Ingreso",
-                        "//input[@ id='password']"
-                )));
+                actor.attemptsTo(Click.on("   "));
                 break;
             case "Tecnologia":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en filtro Tarjetas de Ingreso",
-                        "filtro Tarjetas de Ingreso",
-                        "/ /input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on("    "));
                 break;
         }
 
@@ -127,32 +105,16 @@ public class AdministrarTarjetasIngreso {
     public void tarjetaDeIngresoEnElFiltroSeIngresaInformacion(String filtro, String informacion) {
         switch (filtro) {
             case "ID":
-                actor.attemptsTo(new EnterTextAction(informacion).Execute(new GeneralParams(
-                        "Usuario ingresa texto en campo búsqueda",
-                        "Campo búsqueda",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Enter.theValue(informacion).into(""));
                 break;
             case "Numero":
-                actor.attemptsTo(new EnterTextAction(informacion).Execute(new GeneralParams(
-                        "Usuario ingresa texto en campo búsqueda",
-                        "Campo búsqueda nombre",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Enter.theValue(informacion).into("  "));
                 break;
             case "Tipo":
-                actor.attemptsTo(new EnterTextAction(informacion).Execute(new GeneralParams(
-                        "Usuario ingresa texto en campo búsqueda",
-                        "Campo búsqueda ubicacion",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Enter.theValue(informacion).into("   "));
                 break;
             case "Ingreso":
-                actor.attemptsTo(new EnterTextAction(informacion).Execute(new GeneralParams(
-                        "Usuario ingresa texto en campo búsqueda",
-                        "Campo búsqueda Activa",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Enter.theValue(informacion).into("    "));
                 break;
             case "Tecnologia":
                 actor.attemptsTo(new EnterTextAction(informacion).Execute(new GeneralParams(
@@ -187,19 +149,11 @@ public class AdministrarTarjetasIngreso {
         switch (opcion) {
 
             case "modificar":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en modificar",
-                        "Botón modificar",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on(""));
                 break;
 
             case "activar":
-                actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                        "Usuario da clic en activar",
-                        "Check activar",
-                        "//input[@id='password']"
-                )));
+                actor.attemptsTo(Click.on(" "));
                 break;
         }
 
@@ -230,11 +184,7 @@ public class AdministrarTarjetasIngreso {
 
     @When("^Da clic en Crear ID$")
     public void daClicEnCrearID() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "clic en Crear ID",
-                "Crear ID",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @And("^El sistema redirecciona a la pagina de Crear ID$")
@@ -248,11 +198,7 @@ public class AdministrarTarjetasIngreso {
 
     @When("^Da clic en Carga Masiva$")
     public void daClicEnCargaMasiva() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "clic en Carga Masiva",
-                "Carga Masiva",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @And("^El sistema redirecciona a la pagina de Carga Masiva$")

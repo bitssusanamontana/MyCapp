@@ -39,7 +39,7 @@ public class RecuperarContrasena {
     }
     @When("Da clic en el botón volver")
     public void clicBotonVolver(){
-        actor.attemptsTo(Click.on("#return"));
+        actor.attemptsTo(Click.on("//div[@class='align_icon_content']"));
     }
     @Then("El sistema presenta la página de autenticación de la aplicación")
     public void paginaAtenticacion(){
@@ -59,9 +59,10 @@ public class RecuperarContrasena {
 
 
     @When("Da clic en el boton Enviar")
-    public void clicBotonEnviar(){
+    public void clicBotonEnviar() throws InterruptedException {
         actor.attemptsTo(
                 MoveMouse.to("#buttonRecover").andThen(Actions::click));
+        Thread.sleep(3000);
     }
     @Then("El sistema presenta el mensaje (.*)")
     public void mensajeEnvio(String mensaje) throws InterruptedException {
@@ -70,8 +71,9 @@ public class RecuperarContrasena {
 
                 actor.should(new QuestionValidate("Documento o correo electrónico invalido").Execute(new GeneralParams(
                         "usuario invalido",
-                        "//mat-error[@id='error_recovery_docu_mail_error']"
+                        "#error_recovery_docu_mail_error"
                 )));
+
                 break;
             case ("Inactivo"):
 
@@ -81,8 +83,11 @@ public class RecuperarContrasena {
             )));
 
             case ("Exitoso"):
-
-                actor.should(seeThat(the("//div[@id='recover']"),isVisible()));
+                Thread.sleep(2000);
+                actor.should(new QuestionValidate("Debes tener un nuevo email en tu correo electrónico susana.montana@bitsamericas.com para que puedas restablecer la contraseña").Execute(new GeneralParams(
+                        "usuario inactivo",
+                        "#recover_description_2"
+                )));
 
                 break;
         }
@@ -93,8 +98,12 @@ public class RecuperarContrasena {
 
     }
     @And("El usuario visualiza el mensaje de exito")
-    public void mensajeExito(){
-        actor.should(seeThat(the("//div[@id='recover']"), isVisible()));
+    public void mensajeExito() throws InterruptedException {
+        Thread.sleep(2000);
+        actor.should(new QuestionValidate("Debes tener un nuevo email en tu correo electrónico susana.montana@bitsamericas.com para que puedas restablecer la contraseña").Execute(new GeneralParams(
+                "usuario inactivo",
+                "#recover_description_2"
+        )));
     }
 
 
@@ -153,6 +162,6 @@ public class RecuperarContrasena {
 
     @Then("^Se muestra un pop up con el mensaje de ayuda$")
     public void seMuestraUnPopUpConElMensajeDeAyuda() {
-        actor.should(seeThat(the("#help"), isVisible()));
+        actor.should(seeThat(the("//div[@class='tooltip_content']"), isVisible()));
     }
 }

@@ -11,6 +11,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actions.Enter;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.WebDriver;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.*;
@@ -30,11 +32,7 @@ public class ModificarRolYPermisos {
 
     @And("^Da clic en el boton Modificar Rol$")
     public void daClicEnElBotonModificarRol() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Da clic en Modificar Rol",
-                "clic en Modificar Rol",
-                "/button[@name='action']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^El sistema presenta una ventana con la informacion de Modificar rol$")
@@ -53,11 +51,7 @@ public class ModificarRolYPermisos {
 
     @When("^Edita la informacion del nombre del Rol$")
     public void editaLaInformacionDelNombreDelRol() {
-        actor.attemptsTo(new EnterTextAction("Admin3").Execute(new GeneralParams(
-                "Ingresa información en campo nombre de rol",
-                "Campo nombre de rol",
-                "/button[@name='action']"
-        )));
+        actor.attemptsTo(Enter.theValue("").into(""));
     }
 
     @Then("^Se muestra el mensaje de modificación$")

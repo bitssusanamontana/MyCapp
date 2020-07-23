@@ -9,7 +9,7 @@ Feature: Administrar Agrupador
     And da clic en el agrupador deseado
     And Se visualiza Administrar Agrupador
 
-  Scenario: Información que se presenta al ingresar la opción de administrar Entrada y Salida
+  Scenario: Información que se presenta al ingresar la opción de administrar agrupador
     Then El sistema presenta la Ruta de navegacion
     And Label Administracion de Agrupador
     And Tabla de registros de Unidades independientes

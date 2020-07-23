@@ -7,6 +7,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.MoveMouse;
 import net.thucydides.core.annotations.Managed;
@@ -26,17 +27,20 @@ public class Background {
         actor = Actor.named("usuario");
         actor.can(BrowseTheWeb.with(navegador)); //Abrir navegador
         actor.has(new OpenUrlAction().Execute(new GeneralParams(
-                "https://app-frontresidentialcomplex-dev-001.azurewebsites.net/account/login")));
+                "https://app-frontresidentialcomplex-dev-002.azurewebsites.net/")));
 
     }
 
     @When("^Inicia sesión$")
-    public void iniciarSesion() {
+    public void iniciarSesion() throws InterruptedException {
         actor.attemptsTo(
-                Enter.theValue("rherrerar").into("//input[@id='userName']")
+                Enter.theValue("administrador").into("//input[@id='userName']")
         );
         actor.attemptsTo(
-                Enter.theValue("123456").into("//input[@id='password']"));
+                Enter.theValue("bitsAdmin2020$$").into("//input[@id='password']"));
+        actor.attemptsTo(Click.on("#buttonLogin"));
+        Thread.sleep(5000);
+
     }
 
     @Then("^Entra a la pagina$")
@@ -46,4 +50,4 @@ public class Background {
         Thread.sleep(5000);
     }
 
-}
+    }

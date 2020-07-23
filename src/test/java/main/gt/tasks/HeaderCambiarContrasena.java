@@ -12,6 +12,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actions.Enter;
 import net.thucydides.core.annotations.Managed;
 import org.openqa.selenium.WebDriver;
 import java.util.function.Predicate;
@@ -36,20 +38,12 @@ public class HeaderCambiarContrasena {
 
     @Given("^Un usuario da clic sobre la foto de perfil$")
     public void unUsuarioDaClicSobreLaFotoDePerfil() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Usuario da Clic en foto perfil",
-                "Boton foto perfil",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @When("^Da clic en la opcion Cambiar contrasena$")
     public void daClicEnLaOpcionCambiarContrasena() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Usuario da Clic en botón cambiar contraseña",
-                "Boton cambiar contraseña",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^El sistema presenta una ventana emergente$")
@@ -115,25 +109,13 @@ public class HeaderCambiarContrasena {
     public void daClicEnCampo_requerido(String campo_requerido) {
         switch (campo_requerido) {
             case "Contrasena actual":
-                actor.attemptsTo(new EnterTextAction("").Execute(new GeneralParams(
-                        "Usuario da Clic en botón cerrar",
-                        "Boton cerrar",
-                        "//button[@name='action']"
-                )));
+                actor.attemptsTo(Enter.theValue("").into(""));
                 break;
             case "Nueva Contrasena":
-                actor.attemptsTo(new EnterTextAction("").Execute(new GeneralParams(
-                        "Usuario da Clic en botón cerrar",
-                        "Boton cerrar",
-                        "//but ton[@name='action']"
-                )));
+                actor.attemptsTo(Enter.theValue("").into(" "));
                 break;
             case "Confirmacion Contrasena":
-                actor.attemptsTo(new EnterTextAction("").Execute(new GeneralParams(
-                        "Usuario da Clic en botón cerrar",
-                        "Boton cerrar",
-                        "//button[@ name='action']"
-                )));
+                actor.attemptsTo(Enter.theValue("").into("  "));
                 break;
         }
     }
@@ -149,102 +131,62 @@ public class HeaderCambiarContrasena {
 
     @And("^Da clic en contrasena actual$")
     public void daClicEnContrasenaActual() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "clic en campo contraseña actual",
-                "campo contraseña actual",
-                "//p[contains(text(),'correo')] "
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @When("^Ingresa una (.*)$")
     public void ingresaUnaContrasenaActual(String contrasenaActual) {
-        actor.attemptsTo(new EnterTextAction(contrasenaActual).Execute(new GeneralParams(
-                "Ingresar contrasenaActual",
-                "contrasenaActual",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Enter.theValue(contrasenaActual).into(""));
     }
 
     @Then("^El sistema muestra un (.*) y se muestra un mensaje$")
     public void elSistemaMuestraUnResultado(String resultado) {
         if (resultado.equals("Check correcto")) {
             actor.should(seeThat(the("//button[@name='action']"), isVisible()));
-            actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                    "Dar clic en Check correcto",
-                    "Check correcto",
-                    "//button[@name='action']"
-            )));
+            actor.attemptsTo(Click.on(""));
             actor.should(seeThat(the("//button[@name='action']"), Predicate.isEqual("La contrasena actual es correcta")));
         } else if (resultado.equals("Check incorrecto")) {
             actor.should(seeThat(the("//button[@name='action']"), isVisible()));
             actor.should(seeThat(the("//button[@name='action']"), isVisible()));
-            actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                    "Dar clic en Check incorrecto",
-                    "Check incorrecto",
-                    "//button[@name='action']"
-            )));
+            actor.attemptsTo(Click.on(""));
             actor.should(seeThat(the("//button[@name='action']"), Predicate.isEqual("La contrasena actual es incorrecta")));
         }
     }
 
     @When("^Ingresa nueva contrasena (.*)$")
-    public void ingresaNuevaContrasenaNuevaContrasena(String NuevaContrasena) {
-        actor.attemptsTo(new EnterTextAction(NuevaContrasena).Execute(new GeneralParams(
-                "Ingresar Nuevacontrasena",
-                "Nueva contrasena",
-                "//button[@name='action']"
-        )));
+    public void ingresaNuevaContrasenaNuevaContrasena(String nuevaContrasena) {
+        actor.attemptsTo(Enter.theValue(nuevaContrasena).into(""));
     }
 
     @Then("^El sistema muestra el (.*) y se muestra un mensaje$")
     public void elSistemaMuestraElResultadoYSeMuestraUnMensaje(String resultado) {
         if (resultado.equals("Check correcto")) {
             actor.should(seeThat(the("//button[@name='action']"), isVisible()));
-            actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                    "Dar clic en Check correcto",
-                    "Check correcto",
-                    "//button[@name='action']"
-            )));
+            actor.attemptsTo(Click.on(""));
             actor.should(seeThat(the("//button[@name='action']"), Predicate.isEqual("La nueva contrasena cumple las reglas")));
         } else if (resultado.equals("Check incorrecto")) {
             actor.should(seeThat(the("//button[@name='action']"), isVisible()));
             actor.should(seeThat(the("//button[@name='action']"), isVisible()));
-            actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                    "Dar clic en Check incorrecto",
-                    "Check incorrecto",
-                    "//button[@name='action']"
-            )));
+            actor.attemptsTo(Click.on(""));
             actor.should(seeThat(the("//button[@name='action']"), Predicate.isEqual("La nueva contrasena no cumple con las reglas")));
         }
     }
 
     @And("^Confirmacion de contrasena ingresada (.*)$")
     public void ingresaLaConfirmacionContrasena(String confirmacionContrasena) {
-        actor.attemptsTo(new EnterTextAction(confirmacionContrasena).Execute(new GeneralParams(
-                "Ingresar Confirmación de contrasena",
-                "Confirmación de contrasena",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Enter.theValue(confirmacionContrasena).into(""));
     }
 
     @Then("^Se muestra el (.*) y Se pasa el cursor por el check y se muestra un mensaje$")
     public void seMuestraElResultadoYSePasaElCursorPorElCheckYSeMuestraUnMensaje(String resultado) {
         if (resultado.equals("Check correcto")) {
             actor.should(seeThat(the("//button[@name='action']"), isVisible()));
-            actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                    "Dar clic en Check correcto",
-                    "Check correcto",
-                    "//button[@name='action']"
-            )));
+            actor.attemptsTo(Click.on(""));
             actor.should(seeThat(the("//button[@name='action']"), Predicate.isEqual("Las contraseñas coinciden")));
         } else if (resultado.equals("Check incorrecto")) {
             actor.should(seeThat(the("//button[@name='action']"), isVisible()));
             actor.should(seeThat(the("//button[@name='action']"), isVisible()));
-            actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                    "Dar clic en Check incorrecto",
-                    "Check incorrecto",
-                    "//button[@name='action']"
-            )));
+            actor.attemptsTo(Click.on(""));
             actor.should(seeThat(the("//button[@name='action']"), Predicate.isEqual("Las contraseñas no coinciden")));
         }
     }
@@ -252,23 +194,11 @@ public class HeaderCambiarContrasena {
     @When("^Se ingresan datos correctos para cambiar la contrasena$")
     public void seIngresanDatosCorrectosParaCambiarLaContrasena() {
         //Ingresa contraseña actual
-        actor.attemptsTo(new EnterTextAction("Contraseña123").Execute(new GeneralParams(
-                "Ingresar Confirmación de contrasena",
-                "Confirmación de contrasena",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Enter.theValue("").into(""));
         //Ingresa contraseña nueva
-        actor.attemptsTo(new EnterTextAction("ContraseñaNueva123").Execute(new GeneralParams(
-                "Ingresar Confirmación de contrasena",
-                "Confirmación de contrasena",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Enter.theValue("").into(""));
         //Ingresa confirmación de contraseña
-        actor.attemptsTo(new EnterTextAction("ContraseñaNueva123").Execute(new GeneralParams(
-                "Ingresar Confirmación de contrasena",
-                "Confirmación de contrasena",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Enter.theValue("").into(""));
     }
 
     @Then("^Se habilita el boton de guardar$")
@@ -278,11 +208,7 @@ public class HeaderCambiarContrasena {
 
     @And("^Se da clic en el boton guardar$")
     public void seDaClicEnElBotonGuardar() {
-        actor.attemptsTo(new ClickButtonAction().Execute(new GeneralParams(
-                "Clic en botón guardar",
-                "Botón Guardar",
-                "//button[@name='action']"
-        )));
+        actor.attemptsTo(Click.on(""));
     }
 
     @Then("^Se muestra el mensaje de cambio exitoso$")
