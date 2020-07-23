@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 
 @CucumberOptions(
 
-        features = {"src/test/resources/features/HU-00-InicioSesion.feature"}
+        features = {"src/test/resources/features/HU-05-CrearAgrupador.feature"}
 )
 public class Runner {
 
